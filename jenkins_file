@@ -1,0 +1,42 @@
+pipeline {
+    agent any    
+    parameters{
+        string(name: 'DB_ID', description: 'database strings')
+        string(name: 'rds_db_pass', description: 'database strings')
+        string(name: 'ci_db_pass', description: 'database strings')
+        string(name: 'cs_db_pass', description: 'database strings')
+        string(name: 'session_db_pass', description: 'database strings')
+        string(name: 'db_pass', description: 'database strings')
+        string(name: 'dba_pass', description: 'database strings')
+        string(name: 'timer_pass', description: 'database strings')
+        string(name: 'timer_owner_pass', description: 'database strings')
+        booleanParam(defaultValue: true, name: 'ApplyPasswords')
+        booleanParam(defaultValue: true, name: 'RestartApps')
+    }
+    stages {
+        stage("Apply Passwords") {
+            steps {
+                script {
+                    if (params.ApplyPasswords) {
+                        echo "Need to do."
+                    } 
+                    else {
+                        echo "Nothing to do."
+                    }
+                }
+            }
+        }
+        stage("Restart Apps") {
+            steps {
+                script {
+                    if (params.RestartApps) {
+                        echo "Need to do."
+                    } 
+                    else {
+                        echo "Nothing to do."
+                    }
+                }
+            }
+        }
+    }
+}
